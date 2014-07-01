@@ -1,0 +1,46 @@
+<div id="string">
+The hardness for this rubber is 90g , the hardness for the other was 120g , 123ml 
+</div>
+
+<script>
+
+	var testString = document.getElementById('string').innerHTML;
+
+	var regex = new RegExp("\\b\\d{1,4}\\ {0,}[g]\\b", "g");
+
+	var match;
+	while ((match = regex.exec(testString)) != null) {
+	  
+	    //log the matched value
+	    console.log(match[0]);
+	  
+	    var splitAlphaNumberic = match[0].match(/[a-zA-Z]+|[0-9]+/g);
+	    console.log(splitAlphaNumberic[0]);
+	 
+	    var editedValue = splitAlphaNumberic[0] / 5;
+	  
+	  
+	    document.getElementById('string').innerHTML = testString.replace(match[0],editedValue);
+	    var testString = document.getElementById('string').innerHTML;
+	    // javascript RegExp has a bug when the match has length 0
+	    if (match.index === regex.lastIndex) {
+		    ++regex.lastIndex;
+	    }
+	  // the match variable is an array that contains the matching groups
+	}
+	
+	
+	function RegexReplacer() {
+
+	}
+
+	RegexReplacer.prototype.sayHello = function()
+	{
+	  alert ('hello');
+	};
+
+		
+		
+	
+
+</script>
